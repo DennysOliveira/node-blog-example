@@ -19,7 +19,7 @@ mongoose.connect(dbURI, {
         console.log('db connected')
         
         // listen for requests on port 3000
-        app.listen(3000, 'localhost', () => {
+        app.listen(process.env.PORT, 'localhost', () => {
             console.log("Server listening on port 3000.")
         })
     })
