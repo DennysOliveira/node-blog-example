@@ -1,15 +1,21 @@
 <html lang="en">
 <%- include("../partials/head.ejs") %>
-
 <body>
   <%- include("../partials/nav.ejs") %>
-
   <div class="details content">
+    <% const date = blog.createdAt; %> 
+    <% const weekdays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'] %>
+    <% const months = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'] %>
+    <% const formatedDate = `${weekdays[date.getDay()]}, ${date.getDay()} de ${months[date.getMonth()]} de ${date.getFullYear()} às ${date.getHours()}:${date.getMinutes()}` %>
+    
     <h2><%= blog.title %></h2>
-    <h4><%= blog.snippet %></h4> <p> <%= blog.createdAt %> </p>
-    <div class="content">
-      <p><%= blog.body %></p>
+    <h3><%= blog.snippet %></h3>
+    
+    <div class="content details">
+      <p class="blog-body"><%= blog.body %></p>
+      <p class="date"> postado em <span class="date"><%= formatedDate %></span>.</p>
     </div>
+    
     <a class='delete' data-doc="<%= blog._id %>">delete post</a>
   </div>
 

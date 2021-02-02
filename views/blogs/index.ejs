@@ -4,11 +4,17 @@
     <body>
         <%- include('../partials/nav.ejs') %> 
         <div class='blogs content'>
+            
             <h2> All Posts </h2>
             <% if (blogs.length > 0) { %> 
                 <% blogs.forEach( blog => { %>
                     <a class="single" href="/blogs/<%= blog._id  %>">
                         <h3 class="title"><%= blog.title  %></h2>
+                            <% const date = blog.createdAt; %> 
+                            <% const weekdays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'] %>
+                            <% const months = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'] %>
+                            <% const formatedDate = `${weekdays[date.getDay()]}, ${date.getDay()} de ${months[date.getMonth()]} de ${date.getFullYear()} às ${date.getHours()}:${date.getMinutes()}` %>
+                            <p class="date"><%= formatedDate %></p>
                     </a>
                     <p class="snippet"><%= blog.snippet  %></p>
                 <% }) %>
